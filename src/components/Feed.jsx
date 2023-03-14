@@ -3,7 +3,7 @@ import FirstCharUpperCase from "../function/FirstCharUpper";
 
 const Feed = ({ post, handleDelete }) => {
   return (
-    <div className="card my-2 position-relative">
+    <div className="card my-2">
       <div className="card-body">
         <h5 className="card-title">
           <span style={{ cursor: "pointer" }}>
