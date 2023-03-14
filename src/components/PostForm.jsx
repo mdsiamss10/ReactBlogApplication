@@ -17,8 +17,6 @@ const PostForm = ({ setPosts, posts }) => {
           body: description,
         };
         setPosts([postObj, ...posts]);
-        setTitle("");
-        setDescription("");
         alert("Post created.");
         setTimeout(() => {
           navigate("/");
