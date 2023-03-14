@@ -10,7 +10,7 @@ const Feed = ({ post, handleDelete }) => {
             {FirstCharUpperCase(post.title)}
           </span>
           <button
-            className="btn btn-outline-danger rounded-5 m-2"
+            className="btn btn-danger rounded-5 m-2"
             onClick={() => handleDelete(post.id)}
           >
             Delete
