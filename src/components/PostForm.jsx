@@ -1,23 +1,39 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const PostForm = ({ setPosts, posts }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const navigate = useNavigate();
   const handlePostUpdate = (e) => {
     e.preventDefault();
-    if (title === "" || description === "") {
-      return;
-    } else {
-      const postObj = {
-        id: crypto.randomUUID(),
-        title: title,
-        body: description,
-      };
-      setPosts([postObj, ...posts]);
+    try {
+      if (title === "" || description === "") {
+        return;
+      } else {
+        const postObj = {
+          id: crypto.randomUUID(),
+          title: title,
+          body: description,
+        };
+        setPosts([postObj, ...posts]);
+        setTitle("");
+        setDescription("");
+        alert("Post created.");
+        setTimeout(() => {
+          navigate("/");
+        }, 500);
+      }
+    } catch (err) {
+      alert("Post created failed.");
     }
   };
   return (
-    <form style={{ width: "60%" }} onSubmit={handlePostUpdate}>
+    <form
+      style={{ width: "60%" }}
+      className="postFrom"
+      onSubmit={handlePostUpdate}
+    >
       <div className="mb-3">
         <label className="form-label">Title:</label>
         <input

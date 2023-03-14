@@ -1,18 +1,28 @@
 import React from "react";
 import Feed from "./Feed";
 
-const Home = ({ posts }) => {
+const Home = ({ posts, setPosts }) => {
+  const handleDelete = (id) => {
+    if (confirm("Are you sure you want to delete?")) {
+      setPosts(posts.filter((posts) => posts.id !== id));
+    }
+  };
   return (
     <>
       <div className="container py-3 d-flex flex-column justify-content-center">
         {posts.length ? (
           <ul>
             {posts.map((post) => (
-              <Feed post={post} key={post.key} />
+              <Feed
+                post={post}
+                setPosts={setPosts}
+                key={post.key}
+                handleDelete={handleDelete}
+              />
             ))}
           </ul>
         ) : (
-          <p className="text-center">No posts found!</p>
+          <span className="text-center fs-4 fw-semibold">No posts found!</span>
         )}
       </div>
     </>

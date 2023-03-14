@@ -12,3 +12,13 @@ nav ul li {
 ul {
   padding: 0 !important;
 }
+.card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media screen and (width<=768px) {
+  .postFrom {
+    width: 90% !important;
+  }
+}
