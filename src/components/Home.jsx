@@ -4,7 +4,9 @@ import Feed from "./Feed";
 const Home = ({ posts, setPosts }) => {
   const handleDelete = (id) => {
     if (confirm("Are you sure you want to delete?")) {
-      setPosts(posts.filter((posts) => posts.id !== id));
+      setTimeout(() => {
+        setPosts(posts.filter((posts) => posts.id !== id));
+      }, 500);
     }
   };
   return (

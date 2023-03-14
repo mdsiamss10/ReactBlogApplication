@@ -12,7 +12,7 @@ const PostForm = ({ setPosts, posts }) => {
         return;
       } else {
         const postObj = {
-          id: crypto.randomUUID(),
+          id: new Date().getTime(),
           title: title,
           body: description,
         };
@@ -23,7 +23,7 @@ const PostForm = ({ setPosts, posts }) => {
         }, 500);
       }
     } catch (err) {
-      alert("Post created failed.");
+      alert("Post created failed." + err.message);
     }
   };
   return (
