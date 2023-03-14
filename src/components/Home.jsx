@@ -12,7 +12,7 @@ const Home = ({ posts, setPosts }) => {
   return (
     <>
       <div className="container py-3 d-flex flex-column justify-content-center">
-        {posts.length ? (
+        {posts.length !== 0 ? (
           <ul>
             {posts.map((post) => (
               <Feed

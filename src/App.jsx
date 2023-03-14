@@ -13,6 +13,14 @@ const App = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
+    const searchRegex = new RegExp(search, "i");
+    const filteredSearchResults = posts.filter(
+      ({ title, body }) => searchRegex.test(title) || searchRegex.test(body)
+    );
+    setSearchResults(filteredSearchResults);
+  }, [search]);
+
+  useEffect(() => {
     localStorage.setItem("posts", JSON.stringify(posts));
   }, [posts]);
 
@@ -24,13 +32,16 @@ const App = () => {
           <Routes>
             <Route
               path="/"
-              element={<Home posts={posts} setPosts={setPosts} />}
+              element={<Home posts={searchResults} setPosts={setPosts} />}
             />
             <Route
               path="/post"
               element={<Post setPosts={setPosts} posts={posts} />}
             />
-            <Route path={`/post/:id`} element={<SinglePostPage />} />
+            <Route
+              path={`/post/:id`}
+              element={<SinglePostPage posts={posts} />}
+            />
           </Routes>
         </BrowserRouter>
       </div>

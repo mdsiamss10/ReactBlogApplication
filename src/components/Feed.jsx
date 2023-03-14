@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import FirstCharUpperCase from "../function/FirstCharUpper";
 
 const Feed = ({ post, handleDelete }) => {
@@ -6,9 +7,14 @@ const Feed = ({ post, handleDelete }) => {
     <div className="card my-2">
       <div className="card-body">
         <h5 className="card-title">
-          <span style={{ cursor: "pointer" }}>
+          <Link
+            state={{ post }}
+            style={{ cursor: "pointer" }}
+            className="text-decoration-none"
+            to={`/post/${post.id}`}
+          >
             {FirstCharUpperCase(post.title)}
-          </span>
+          </Link>
           <button
             className="btn btn-danger rounded-5 m-2"
             onClick={() => handleDelete(post.id)}
@@ -16,7 +22,18 @@ const Feed = ({ post, handleDelete }) => {
             Delete
           </button>
         </h5>
-        <p className="card-text">{FirstCharUpperCase(post.body)}</p>
+        <span style={{ fontSize: "14px" }} className="text-muted">
+          {post.date}
+        </span>
+        <p className="card-text mt-2">
+          {post.body.length <= 400
+            ? FirstCharUpperCase(post.body)
+            : FirstCharUpperCase(post.body).slice(0, 400)}
+          ...{" "}
+          <Link to={`/post/${post.id}`} state={{ post }}>
+            Read more
+          </Link>
+        </p>
       </div>
     </div>
   );

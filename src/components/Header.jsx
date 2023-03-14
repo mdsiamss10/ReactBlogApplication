@@ -44,14 +44,11 @@ const Header = ({ search, setSearch }) => {
             <input
               className="form-control me-2"
               type="search"
-              placeholder="Search"
+              placeholder="Search Post"
               aria-label="Search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <button className="btn btn-outline-primary" type="submit">
-              Search
-            </button>
           </form>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -15,6 +16,7 @@ const PostForm = ({ setPosts, posts }) => {
           id: new Date().getTime(),
           title: title,
           body: description,
+          date: format(new Date(), "MMMM dd, yyyy pp"),
         };
         setPosts([postObj, ...posts]);
         alert("Post created.");
