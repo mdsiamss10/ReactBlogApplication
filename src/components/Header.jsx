@@ -33,7 +33,7 @@ const Header = ({ search, setSearch, totalPost, setPosts }) => {
             </li>
             <li className="nav-item">
               <Link to="/post" className="nav-link active" aria-current="page">
-                Post
+                Add Post
               </Link>
             </li>
             <li className="nav-item">
