@@ -1,16 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Header = ({ search, setSearch }) => {
+const Header = ({ search, setSearch, totalPost, setPosts }) => {
   return (
     <nav
       className="navbar navbar-expand-lg bg-body-tertiary bg-light shadow-sm sticky-top"
       style={{ padding: "1em 0", zIndex: 1000 }}
     >
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          BlOgSm
-        </a>
+        <Link className="text-decoration-none" to="/">
+          <a className="navbar-brand" href="#">
+            BlOgSm
+          </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -39,19 +41,32 @@ const Header = ({ search, setSearch }) => {
                 About
               </Link>
             </li>
+            <li className="nav-item">
+              <Link
+                className="nav-link active"
+                aria-current="page"
+                onClick={() => {
+                  if (confirm("Are you sure to clear all blogs?")) {
+                    setTimeout(() => {
+                      setPosts([]);
+                    }, 500);
+                    localStorage.clear();
+                  }
+                }}
+              >
+                Clear
+              </Link>
+            </li>
           </ul>
           <form className="d-flex" role="search">
             <input
               className="form-control me-2"
               type="search"
-              placeholder="Search"
+              placeholder={`Search Post (${totalPost})`}
               aria-label="Search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <button className="btn btn-outline-primary" type="submit">
-              Search
-            </button>
           </form>
         </div>
       </div>
