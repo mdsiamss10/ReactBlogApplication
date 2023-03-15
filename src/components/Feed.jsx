@@ -1,9 +1,11 @@
 import React from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import striptags from "striptags";
 import FirstCharUpperCase from "../function/FirstCharUpper";
 
 const Feed = ({ post, handleDelete }) => {
+  const sanitizedtext = striptags(post.body);
   return (
     <div className="card my-2">
       <div className="card-body">
@@ -14,7 +16,7 @@ const Feed = ({ post, handleDelete }) => {
             className="text-decoration-none"
             to={`/post/${post.id}`}
           >
-            {FirstCharUpperCase(post.title)}
+            {post.title}
           </Link>
           <div className="button-stack d-flex align-items-center justify-content-center">
             <button
@@ -39,13 +41,17 @@ const Feed = ({ post, handleDelete }) => {
           {post.date}
         </span>
         <p className="card-text mt-0">
-          {post.body.length <= 400
-            ? FirstCharUpperCase(post.body)
-            : FirstCharUpperCase(post.body).slice(0, 400)}
-          ...{" "}
-          <Link to={`/post/${post.id}`} state={{ post }}>
-            Read more
-          </Link>
+          {sanitizedtext.length <= 300
+            ? FirstCharUpperCase(sanitizedtext)
+            : FirstCharUpperCase(sanitizedtext).slice(0, 300)}
+          {sanitizedtext.length >= 300 && (
+            <>
+              ...
+              <Link to={`/post/${post.id}`} state={{ post }}>
+                Read more
+              </Link>
+            </>
+          )}
         </p>
       </div>
     </div>

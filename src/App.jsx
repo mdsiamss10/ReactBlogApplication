@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import postApi from "./api/post.api";
+import About from "./components/About";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Post from "./components/Post";
@@ -8,10 +8,10 @@ import SinglePostPage from "./components/SinglePostPage";
 
 const App = () => {
   const [search, setSearch] = useState("");
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(
+    JSON.parse(localStorage.getItem("posts")) || []
+  );
   const [searchResults, setSearchResults] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(null);
 
   useEffect(() => {
     const searchRegex = new RegExp(search, "i");
@@ -22,22 +22,8 @@ const App = () => {
   }, [search, posts]);
 
   useEffect(() => {
-    const getPosts = async () => {
-      try {
-        const data = await (await postApi.get("/items")).data;
-        setTimeout(() => {
-          setPosts(data);
-          setIsLoading(false);
-        }, 500);
-        setIsError(false);
-      } catch (err) {
-        setIsError(true);
-        setIsLoading(false);
-        console.log(err.message);
-      }
-    };
-    getPosts();
-  }, []);
+    localStorage.setItem("posts", JSON.stringify(posts));
+  }, [posts]);
 
   return (
     <>
@@ -47,20 +33,12 @@ const App = () => {
             totalPost={posts.length}
             search={search}
             setSearch={setSearch}
-            isLoading={isLoading}
-            isError={isError}
+            setPosts={setPosts}
           />
           <Routes>
             <Route
               path="/"
-              element={
-                <Home
-                  posts={searchResults}
-                  setPosts={setPosts}
-                  isLoading={isLoading}
-                  isError={isError}
-                />
-              }
+              element={<Home posts={searchResults} setPosts={setPosts} />}
             />
             <Route
               path="/post"
@@ -70,6 +48,7 @@ const App = () => {
               path={`/post/:id`}
               element={<SinglePostPage posts={posts} />}
             />
+            <Route path="/about" element={<About />} />
           </Routes>
         </BrowserRouter>
       </div>

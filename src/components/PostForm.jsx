@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import postApi from "../api/post.api";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import getDate from "../function/getDate";
 
 const PostForm = ({ setPosts, posts }) => {
@@ -24,8 +25,7 @@ const PostForm = ({ setPosts, posts }) => {
         if (title === "" || description === "") {
           return;
         } else {
-          const response = await postApi.post("/items", postObj);
-          setPosts([...posts, response.data]);
+          setPosts([...posts, postObj]);
           alert("Post created.");
           setTimeout(() => {
             navigate("/");
@@ -42,7 +42,6 @@ const PostForm = ({ setPosts, posts }) => {
             date: getDate(),
             updated: true,
           };
-          await postApi.put("/items/" + editPost.post.id, newPostObj);
           setPosts(
             posts.map((post) =>
               post.id === editPost.post.id ? newPostObj : post
@@ -72,22 +71,37 @@ const PostForm = ({ setPosts, posts }) => {
           required
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          minLength={5}
         />
       </div>
       <div className="mb-3">
         <label className="form-label">Description</label>
-        <textarea
-          className="form-control"
+        <ReactQuill
+          placeholder="Write your description here..."
           required
           value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          rows={7}
-          style={{ resize: "none" }}
+          onChange={setDescription}
         />
       </div>
-      <button type="submit" className="btn btn-primary w-100 mb-5">
-        Submit
-      </button>
+      {editPost && (
+        <div className="row">
+          <div className="col-6">
+            <Link to="/" className="btn btn-outline-danger w-100 mb-2">
+              Cancel
+            </Link>
+          </div>
+          <div className="col-6">
+            <button type="submit" className="btn btn-primary w-100 mb-2">
+              Submit
+            </button>
+          </div>
+        </div>
+      )}
+      {!editPost && (
+        <button type="submit" className="btn btn-primary w-100 mb-2">
+          Submit
+        </button>
+      )}
     </form>
   );
 };

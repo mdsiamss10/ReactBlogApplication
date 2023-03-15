@@ -29,3 +29,6 @@ ul {
 .first-letter-big::first-letter {
   font-size: 40px;
 }
+.single-post-p p {
+  margin-bottom: 0;
+}

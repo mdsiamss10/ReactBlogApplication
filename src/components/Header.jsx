@@ -1,16 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Header = ({ search, setSearch, isLoading, isError, totalPost }) => {
+const Header = ({ search, setSearch, totalPost, setPosts }) => {
   return (
     <nav
       className="navbar navbar-expand-lg bg-body-tertiary bg-light shadow-sm sticky-top"
       style={{ padding: "1em 0", zIndex: 1000 }}
     >
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          BlOgSm
-        </a>
+        <Link className="text-decoration-none" to="/">
+          <a className="navbar-brand" href="#">
+            BlOgSm
+          </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -37,6 +39,22 @@ const Header = ({ search, setSearch, isLoading, isError, totalPost }) => {
             <li className="nav-item">
               <Link to="/about" className="nav-link active" aria-current="page">
                 About
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                className="nav-link active"
+                aria-current="page"
+                onClick={() => {
+                  if (confirm("Are you sure to clear all blogs?")) {
+                    setTimeout(() => {
+                      setPosts([]);
+                    }, 500);
+                    localStorage.clear();
+                  }
+                }}
+              >
+                Clear
               </Link>
             </li>
           </ul>
