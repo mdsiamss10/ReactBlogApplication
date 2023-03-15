@@ -42,8 +42,10 @@ const Feed = ({ post, handleDelete }) => {
         </span>
         <p className="card-text mt-0">
           {bodyWithoutHTML.length <= 250
-            ? FirstCharUpperCase(bodyWithoutHTML)
-            : FirstCharUpperCase(bodyWithoutHTML).slice(0, 250)}
+            ? FirstCharUpperCase(bodyWithoutHTML).replace("&nbsp;", " ")
+            : FirstCharUpperCase(bodyWithoutHTML)
+                .slice(0, 250)
+                .replace("&nbsp;", " ")}
           {bodyWithoutHTML.length >= 250 && (
             <>
               ...
