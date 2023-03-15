@@ -1,4 +1,5 @@
 import React from "react";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import FirstCharUpperCase from "../function/FirstCharUpper";
 
@@ -15,17 +16,29 @@ const Feed = ({ post, handleDelete }) => {
           >
             {FirstCharUpperCase(post.title)}
           </Link>
-          <button
-            className="btn btn-danger rounded-5 m-2"
-            onClick={() => handleDelete(post.id)}
-          >
-            Delete
-          </button>
+          <div className="button-stack d-flex align-items-center justify-content-center">
+            <button
+              className="btn btn-danger rounded-5 mx-1 d-flex justify-content-center align-items-center"
+              onClick={() => handleDelete(post.id)}
+            >
+              <FaTrash />
+            </button>
+            <Link to="/post" state={{ post }}>
+              <button className="btn btn-primary rounded-5 mx-1 d-flex justify-content-center align-items-center">
+                <FaEdit />
+              </button>
+            </Link>
+          </div>
         </h5>
+        {post.updated && (
+          <>
+            <span className="text-muted">(edited) - </span>
+          </>
+        )}
         <span style={{ fontSize: "14px" }} className="text-muted">
           {post.date}
         </span>
-        <p className="card-text mt-2">
+        <p className="card-text mt-0">
           {post.body.length <= 400
             ? FirstCharUpperCase(post.body)
             : FirstCharUpperCase(post.body).slice(0, 400)}

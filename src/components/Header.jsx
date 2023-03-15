@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Header = ({ search, setSearch }) => {
+const Header = ({ search, setSearch, isLoading, isError, totalPost }) => {
   return (
     <nav
       className="navbar navbar-expand-lg bg-body-tertiary bg-light shadow-sm sticky-top"
@@ -44,7 +44,7 @@ const Header = ({ search, setSearch }) => {
             <input
               className="form-control me-2"
               type="search"
-              placeholder="Search Post"
+              placeholder={`Search Post (${totalPost})`}
               aria-label="Search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}

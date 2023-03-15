@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "id": 1678816242212,
+      "title": "What is Prisma?🤔",
+      "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates soluta debitis et facere assumenda dignissimos repellendus, aliquam deserunt! Praesentium perferendis mollitia nisi officia voluptas facere? Accusantium cumque fugiat molestiae, velit quam nemo doloribus natus hic saepe omnis veritatis laudantium distinctio voluptas? Sequi architecto autem harum placeat perferendis fugiat? Aspernatur quia enim voluptatum hic ex neque eos laborum consequatur? Ipsam at possimus iure voluptatibus dolor quasi explicabo veritatis dolorem repellendus exercitationem, pariatur nihil, ut illum. Rem nisi, aliquam, molestias quia fuga laboriosam quae veniam similique vero, nulla deserunt cupiditate ipsa? Rerum ratione quis possimus molestias sit, facilis, modi vitae dolorum iure porro quos ducimus? Possimus incidunt provident similique excepturi ratione error, deserunt magnam, nihil optio architecto iure officiis modi dignissimos recusandae ipsam quis ipsum esse nesciunt delectus rem molestias maiores necessitatibus tenetur! Iure ut nulla explicabo quaerat quo natus repudiandae accusamus enim autem dolor laboriosam veritatis praesentium quod, dolorum dolore consectetur?",
+      "date": "March 15, 2023 12:14 AM",
+      "updated": true
+    },
+    {
+      "id": 1678817731185,
+      "title": "Why you should use JavaScript?",
+      "body": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis dolorem, provident in nesciunt nobis, odit possimus dicta aperiam modi perferendis fuga rerum, optio aliquid molestias nemo. Pariatur magnam reprehenderit laudantium illo facilis, non, aperiam tenetur ad dolores quo velit iusto. Praesentium voluptatibus eligendi, itaque facilis aperiam sequi laudantium distinctio odit.",
+      "date": "March 15, 2023 12:17 AM",
+      "updated": true
+    }
+  ]
+}

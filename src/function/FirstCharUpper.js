@@ -1,4 +1,4 @@
-const FirstCharUpper = (string) => {
+const FirstCharUpper = (string = "") => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 

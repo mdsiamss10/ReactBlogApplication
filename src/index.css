@@ -5,6 +5,7 @@
   box-sizing: border-box;
   font-family: "Mulish" !important;
   font-weight: 500;
+  scroll-behavior: smooth;
 }
 nav ul li {
   font-weight: normal;
