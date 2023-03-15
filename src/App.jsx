@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import About from "./components/About";
+import EditPostForm from "./components/EditPostForm";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Post from "./components/Post";
@@ -43,6 +44,10 @@ const App = () => {
             <Route
               path="/post"
               element={<Post setPosts={setPosts} posts={posts} />}
+            />
+            <Route
+              path="/post/edit/:id"
+              element={<EditPostForm setPosts={setPosts} posts={posts} />}
             />
             <Route
               path={`/post/:id`}

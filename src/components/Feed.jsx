@@ -5,7 +5,7 @@ import striptags from "striptags";
 import FirstCharUpperCase from "../function/FirstCharUpper";
 
 const Feed = ({ post, handleDelete }) => {
-  const sanitizedtext = striptags(post.body);
+  const bodyWithoutHTML = striptags(post.body);
   return (
     <div className="card my-2">
       <div className="card-body">
@@ -25,7 +25,7 @@ const Feed = ({ post, handleDelete }) => {
             >
               <FaTrash />
             </button>
-            <Link to="/post" state={{ post }}>
+            <Link to={`/post/edit/${post.id}`} state={{ post }}>
               <button className="btn btn-primary rounded-5 mx-1 d-flex justify-content-center align-items-center">
                 <FaEdit />
               </button>
@@ -41,10 +41,10 @@ const Feed = ({ post, handleDelete }) => {
           {post.date}
         </span>
         <p className="card-text mt-0">
-          {sanitizedtext.length <= 300
-            ? FirstCharUpperCase(sanitizedtext)
-            : FirstCharUpperCase(sanitizedtext).slice(0, 300)}
-          {sanitizedtext.length >= 300 && (
+          {bodyWithoutHTML.length <= 250
+            ? FirstCharUpperCase(bodyWithoutHTML)
+            : FirstCharUpperCase(bodyWithoutHTML).slice(0, 250)}
+          {bodyWithoutHTML.length >= 250 && (
             <>
               ...
               <Link to={`/post/${post.id}`} state={{ post }}>

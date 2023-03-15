@@ -1,10 +1,11 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import striptags from "striptags";
+import BodyDetails from "../function/BodyDetails.js";
 
 const SinglePostPage = () => {
   const location = useLocation();
   const post = location.state;
-  // console.log(readingTime(post.post.body));
   return (
     <div className="container pt-3 my-3">
       {!post ? (
@@ -26,15 +27,28 @@ const SinglePostPage = () => {
                 style={{ fontSize: "18px", lineHeight: "1.5em" }}
                 className="single-post-p"
               />
+              <hr />
+              <details className="my-2">
+                <summary>Details</summary>
+                <div className="card-body">
+                  <ul>
+                    <li style={{ listStyle: "none" }}>
+                      Reading time:{" "}
+                      {
+                        BodyDetails(post && striptags(post.post.body))
+                          .readingTime
+                      }{" "}
+                      minutes
+                    </li>
+                    <li style={{ listStyle: "none" }}>
+                      Words:{" "}
+                      {BodyDetails(post && striptags(post.post.body)).wordCount}
+                    </li>
+                  </ul>
+                </div>
+              </details>
             </div>
           </div>
-          {/* <details className="my-2">
-            <summary>Details</summary>
-            <ul>
-              <li style={{ listStyle: "none" }}>Reading time: 1 minute</li>
-              <li style={{ listStyle: "none" }}>Words: 138</li>
-            </ul>
-          </details> */}
           <Link to="/">
             <button className="btn btn-danger my-2 float-end">Back</button>
           </Link>
